@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/delga/Documents/GitHub/FinalApp/app/src/main/res/layout/activity_main.xml" value="0.146403242147923" />
-        <entry key="..\:/Users/delga/Documents/GitHub/FinalApp/app/src/main/res/layout/activity_second.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_scores.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_second.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.38958333333333334" />
       </map>
     </option>
   </component>
