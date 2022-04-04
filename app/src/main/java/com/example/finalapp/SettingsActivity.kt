@@ -20,14 +20,13 @@ class SettingsActivity : AppCompatActivity() {
 
         //back button
         settingsBackButton = findViewById(R.id.settingsBackButton)
-
         settingsBackButton.setOnClickListener {
             toMain()
         }
     }
 
     private fun toMain() {
-        val intent = Intent(this,MainActivity::class.java).apply {}
+        val intent = Intent(this, MainActivity::class.java).apply {}
         startActivity(intent)
     }
 

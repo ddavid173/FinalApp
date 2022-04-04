@@ -1,11 +1,16 @@
 package com.example.finalapp
 
 import android.content.Intent
+import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.VelocityTracker
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintSet
 import com.example.finalapp.databinding.ActivitySecondBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -24,7 +29,11 @@ class SecondActivity : AppCompatActivity() {
         binding = ActivitySecondBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        //character
         character = findViewById<ImageView>(R.id.character)
+
+        // back button
         backButton = findViewById(R.id.fab)
         backButton.setOnClickListener {
             toMain()
@@ -34,7 +43,7 @@ class SecondActivity : AppCompatActivity() {
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val action = event.action
         if (action == MotionEvent.ACTION_MOVE){
-           val tx = event.x
+            val tx = event.x
             character.x = tx
         }
         return true

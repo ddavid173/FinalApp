@@ -22,21 +22,18 @@ class MainActivity : AppCompatActivity() {
 
         //start button
         startButton = findViewById(R.id.startButton)
-
         startButton.setOnClickListener {
             start()
         }
 
         //settings button
         settingsButton = findViewById(R.id.settingsbutton)
-
         settingsButton.setOnClickListener {
             settings()
         }
 
         //scores button
         scoresButton = findViewById(R.id.scoresButton)
-
         scoresButton.setOnClickListener {
             scores()
         }
