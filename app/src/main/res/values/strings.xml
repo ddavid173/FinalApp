@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FinalApp</string>
     <string name="button">Back</string>
+    <string name="Exit">Exit</string>
 </resources>
