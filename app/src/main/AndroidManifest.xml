@@ -16,7 +16,7 @@
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".GameActivity"
+            android:name=".SecondActivity"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
