@@ -10,6 +10,8 @@ class SettingsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
     lateinit var settingsBackButton: Button
+    lateinit var resetScoreButton: Button
+    lateinit var musicToggleButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +25,33 @@ class SettingsActivity : AppCompatActivity() {
         settingsBackButton.setOnClickListener {
             toMain()
         }
+
+        //reset score button
+        resetScoreButton = findViewById(R.id.resetScoreButton)
+        resetScoreButton.setOnClickListener {
+            resetScores()
+        }
+
+        //music toggle button
+        musicToggleButton = findViewById(R.id.toggleMusic)
+        musicToggleButton.setOnClickListener {
+            musicToggle()
+        }
     }
 
     private fun toMain() {
         val intent = Intent(this, MainActivity::class.java).apply {}
         startActivity(intent)
     }
+
+    private fun resetScores(){
+        // will erase the list of scores saved on app
+    }
+
+    private fun musicToggle(){
+        //will toggle music on or off
+    }
+
 
 
 }
