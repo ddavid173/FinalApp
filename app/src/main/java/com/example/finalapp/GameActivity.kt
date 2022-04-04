@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintSet
 import com.example.finalapp.databinding.ActivitySecondBinding
 
-class SecondActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
 
     lateinit var backButton: Button
     private lateinit var binding: ActivitySecondBinding
