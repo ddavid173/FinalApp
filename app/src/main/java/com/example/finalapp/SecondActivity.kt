@@ -28,6 +28,7 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         val view = binding.root
+
         setContentView(view)
 
         //character
@@ -40,6 +41,8 @@ class SecondActivity : AppCompatActivity() {
         }
     }
 
+
+
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val action = event.action
         if (action == MotionEvent.ACTION_MOVE){
@@ -48,7 +51,6 @@ class SecondActivity : AppCompatActivity() {
         }
         return true
     }
-
 
 
     private fun toMain() {
