@@ -19,7 +19,7 @@ class SecondActivity : AppCompatActivity() {
     lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivitySecondBinding
 
-    private var mVelocityTracker: VelocityTracker? = null
+//    private var mVelocityTracker: VelocityTracker? = null
 
     lateinit var character: ImageView
 
@@ -32,7 +32,7 @@ class SecondActivity : AppCompatActivity() {
         setContentView(view)
 
         //character
-        character = findViewById<ImageView>(R.id.character)
+        character = binding.character
 
         // back button
         backButton = findViewById(R.id.fab)
@@ -40,7 +40,6 @@ class SecondActivity : AppCompatActivity() {
             toMain()
         }
     }
-
 
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
