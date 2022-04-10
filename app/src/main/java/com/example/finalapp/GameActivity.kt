@@ -1,25 +1,22 @@
 package com.example.finalapp
 
 import android.content.Intent
-import android.media.Image
 import android.os.Bundle
-import android.util.Log
+import android.os.SystemClock.sleep
 import android.view.MotionEvent
-import android.view.VelocityTracker
-import android.widget.Button
+import android.view.WindowManager
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintSet
 import com.example.finalapp.databinding.ActivitySecondBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import java.util.Timer
-import kotlin.concurrent.schedule
 
-class SecondActivity : AppCompatActivity() {
+class GameActivity : AppCompatActivity() {
 
     lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivitySecondBinding
+    private val fps = 60
+    private val sleepTime = 1000 / fps
+    var running = true
 
 //    private var mVelocityTracker: VelocityTracker? = null
 
@@ -27,6 +24,8 @@ class SecondActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        this.getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_second)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         val view = binding.root
@@ -43,30 +42,26 @@ class SecondActivity : AppCompatActivity() {
         }
     }
 
+    fun game(){
+        while (running) {
+            character.x += 20
+            sleep(sleepTime.toLong())
+        }
+    }
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val action = event.action
+        var start: Float
+        start = if (action == MotionEvent.ACTION_DOWN) {
+            character.x
+        } else {
+            (0).toFloat()
+        }
         if (action == MotionEvent.ACTION_MOVE){
             val tx = event.x
-            character.x = tx
+            character.x = tx - start
         }
-//        else if (action == MotionEvent.ACTION_DOWN){
-//            game()
-//        }
         return true
     }
-
-//    private fun game(){
-//        var lastIterationTime = System.currentTimeMillis()
-////        while (character.y < 800){
-//        for (i in 1..100000){
-//            val now = System.currentTimeMillis()
-//            val timePassed = now - lastIterationTime
-//            if (timePassed > 100){
-//                rising()
-//                lastIterationTime = System.currentTimeMillis()
-//            }
-//        }
-//    }
 
 
     private fun toMain() {
@@ -74,8 +69,8 @@ class SecondActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun rising(){
-        character.y = character.y - 1
+    fun update(){
+        //todo
     }
 
 }
