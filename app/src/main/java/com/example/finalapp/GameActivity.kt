@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.SystemClock.sleep
 import android.view.MotionEvent
 import android.view.WindowManager
-import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalapp.databinding.ActivitySecondBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,10 +16,12 @@ class GameActivity : AppCompatActivity() {
     private val fps = 60
     private val sleepTime = 1000 / fps
     var running = true
+    var count = 0
 
 //    private var mVelocityTracker: VelocityTracker? = null
 
-    lateinit var character: ImageView
+    lateinit var character: Player
+    lateinit var platform: Platform
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +34,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(view)
 
         //character
-        character = binding.character
+        character = Player(binding.character)
 
         // back button
         backButton = findViewById(R.id.fab)
@@ -44,21 +45,19 @@ class GameActivity : AppCompatActivity() {
 
     fun game(){
         while (running) {
-            character.x += 20
             sleep(sleepTime.toLong())
         }
     }
     override fun onTouchEvent(event: MotionEvent): Boolean {
         val action = event.action
-        var start: Float
-        start = if (action == MotionEvent.ACTION_DOWN) {
-            character.x
-        } else {
-            (0).toFloat()
+        if (action == MotionEvent.ACTION_DOWN){
+            val tx = event.x
+            character.lastx = tx
         }
         if (action == MotionEvent.ACTION_MOVE){
             val tx = event.x
-            character.x = tx - start
+            character.updateTouch(character.lastx, tx)
+            character.lastx = tx
         }
         return true
     }
@@ -67,10 +66,6 @@ class GameActivity : AppCompatActivity() {
     private fun toMain() {
         val intent = Intent(this, MainActivity::class.java).apply {}
         startActivity(intent)
-    }
-
-    fun update(){
-        //todo
     }
 
 }

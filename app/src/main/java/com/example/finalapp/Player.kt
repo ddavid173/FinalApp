@@ -9,20 +9,33 @@ import android.widget.ImageView
  */
 
 class Player(private val image: ImageView) {
+    var lastx = 0.0f
+    private var x = 0f
+    private var y = 0f
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
     init {
-        image.x = (screenWidth/2).toFloat()
-        image.y = (screenHeight / 5).toFloat()
+        image.translationX = 0f//(screenWidth/20).toFloat()
+        image.translationY = 0f//(screenHeight / 6).toFloat()
     }
 
     /**
      * update properties for the game object
      * when the player touches the screen, position the player bitmap there
      */
-    fun updateTouch(touch_x: Int) {
-        image.x = (touch_x - screenWidth / 2).toFloat()
+    fun updateTouch(start: Float, end: Float) {
+        if (image.translationX + (end - start).toFloat() < 0){
+                if ((end - start) > 0){
+                    image.translationX += (end - start).toFloat()
+                }
+        } else if (image.translationX + (end - start).toFloat() > (screenWidth - image.width)) {
+                if ((end - start) < 0) {
+                    image.translationX += (end - start).toFloat()
+                }
+        } else {
+            image.translationX += (end - start).toFloat()
+        }
     }
 
 }
