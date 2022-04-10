@@ -22,10 +22,20 @@
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_marginStart="168dp"
-        android:layout_marginBottom="456dp"
+        android:layout_marginBottom="172dp"
         android:contentDescription="character"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_adb_24" />
+
+    <ImageView
+        android:id="@+id/platform"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginBottom="260dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/platform" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
