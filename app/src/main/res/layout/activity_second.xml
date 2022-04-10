@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SecondActivity">
+    tools:context=".GameActivity">
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -21,10 +21,10 @@
         android:id="@+id/character"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginStart="168dp"
-        android:layout_marginBottom="456dp"
+        android:layout_marginBottom="100dp"
         android:contentDescription="character"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_adb_24" />
 
