@@ -10,8 +10,7 @@ import android.widget.ImageView
 
 class Player(private val image: ImageView) {
     var lastx = 0.0f
-    private var x = 0f
-    private var y = 0f
+    var goDown = false
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
@@ -36,6 +35,14 @@ class Player(private val image: ImageView) {
         } else {
             image.translationX += (end - start).toFloat()
         }
+    }
+    
+    fun jump() {
+        // TODO:  
+    }
+
+    fun reset(){
+        image.translationX = 0f
     }
 
 }
