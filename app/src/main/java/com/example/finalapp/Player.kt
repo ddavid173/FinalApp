@@ -2,6 +2,7 @@ package com.example.finalapp
 
 import android.content.res.Resources
 import android.widget.ImageView
+import java.lang.Math.abs
 
 
 /**
@@ -39,6 +40,11 @@ class Player(private val image: ImageView) {
     
     fun jump(move: Double){
         image.translationY -= move.toFloat()
+        if (move < 0) {
+            goDown = true
+        } else if (move > 0) {
+            goDown = false
+        }
     }
 
     fun dead(): Boolean {
@@ -47,6 +53,16 @@ class Player(private val image: ImageView) {
 
     fun reset(){
         image.translationX = 0f
+    }
+
+    fun collided(plat: Platform): Boolean {
+        val diff = abs(((image.translationY) + screenHeight) - plat.y - image.height - 50)
+        println(diff)
+        return if (goDown) {
+            diff < 5
+        } else {
+            false
+        }
     }
 
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalapp.databinding.ActivitySecondBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -15,8 +16,8 @@ class GameActivity : AppCompatActivity() {
     lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivitySecondBinding
 
-    private val a = -50
-    private val vp = 1
+    private val a = -100
+    private val vp = 1f
     private val v0 = 300
     private val fps = 50
     private val sleepTime = 1000 / fps
@@ -30,6 +31,8 @@ class GameActivity : AppCompatActivity() {
     lateinit var platform1: Platform
     lateinit var platform2: Platform
     lateinit var platform3: Platform
+    lateinit var scoreText: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +48,10 @@ class GameActivity : AppCompatActivity() {
 
         //character
         character = Player(binding.character)
-        platform1 = Platform(binding.platform1, )
+        scoreText = binding.score
+
+        //Platforms
+        platform1 = Platform(binding.platform1)
 
         // back button
         backButton = findViewById(R.id.fab)
@@ -67,6 +73,10 @@ class GameActivity : AppCompatActivity() {
             if (character.dead()) {
                 running = false
                 toMain()
+            }
+            if (character.collided(platform1)){
+                t = 0f
+                score += 1
             }
             Thread.sleep(sleepTime.toLong())
         }
