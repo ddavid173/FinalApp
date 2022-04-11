@@ -22,13 +22,17 @@ class Platform(private val image: ImageView) {
      * update properties for the game object
      * when the player touches the screen, position the player bitmap there
      */
-    fun updateTouch(y_move: Double) {
+    fun updateTouch(y_move: Int) {
         image.translationY += (y_move).toFloat()
     }
 
     fun spawn(){
         image.translationX = Random.nextInt(30, screenWidth - image.width - 60).toFloat()
         image.translationY = (image.height).toFloat()
+    }
+
+    fun inVisible(): Boolean {
+        return image.visibility == View.VISIBLE
     }
 
     fun reset(){

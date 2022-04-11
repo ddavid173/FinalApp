@@ -37,8 +37,12 @@ class Player(private val image: ImageView) {
         }
     }
     
-    fun jump() {
-        // TODO:  
+    fun jump(move: Double){
+        image.translationY -= move.toFloat()
+    }
+
+    fun dead(): Boolean {
+        return image.translationY > 300
     }
 
     fun reset(){
