@@ -11,6 +11,7 @@ import kotlin.random.Random
  */
 
 class Platform(private val image: ImageView) {
+    var y = 0f
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
@@ -22,13 +23,19 @@ class Platform(private val image: ImageView) {
      * update properties for the game object
      * when the player touches the screen, position the player bitmap there
      */
-    fun updateTouch(y_move: Double) {
-        image.translationY += (y_move).toFloat()
+    fun updateTouch(y_move: Float) {
+        image.translationY += (y_move)
+        y = image.translationY + image.height
+
     }
 
     fun spawn(){
-        image.translationX = Random.nextInt(30, screenWidth - image.width - 60).toFloat()
-        image.translationY = (image.height).toFloat()
+        image.translationX = Random.nextInt(30, screenWidth - image.width).toFloat()
+        image.translationY = 750f
+    }
+
+    fun inVisible(): Boolean {
+        return image.visibility == View.VISIBLE
     }
 
     fun reset(){

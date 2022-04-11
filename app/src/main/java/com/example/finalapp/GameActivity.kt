@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalapp.databinding.ActivitySecondBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -15,12 +16,14 @@ class GameActivity : AppCompatActivity() {
     lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivitySecondBinding
 
-    private val a = 9.8
-    private val v0 = 10
-    private val fps = 60
+    private val a = -100
+    private val vp = 1f
+    private val v0 = 300
+    private val fps = 50
     private val sleepTime = 1000 / fps
-    private var t = 0
+    private var t = 0f
     var running = true
+    var score = 0
 
 //    private var mVelocityTracker: VelocityTracker? = null
 
@@ -28,6 +31,8 @@ class GameActivity : AppCompatActivity() {
     lateinit var platform1: Platform
     lateinit var platform2: Platform
     lateinit var platform3: Platform
+    lateinit var scoreText: TextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +48,9 @@ class GameActivity : AppCompatActivity() {
 
         //character
         character = Player(binding.character)
+        scoreText = binding.score
+
+        //Platforms
         platform1 = Platform(binding.platform1)
 
         // back button
@@ -51,16 +59,31 @@ class GameActivity : AppCompatActivity() {
             game()
         }
         backButton.setOnClickListener {
-                toMain()
+            toMain()
         }
     }
 
     private fun game() {
         while (running) {
-            platform1.updateTouch(v0*t - 0.5 * a * t * t)
+            if (platform1.inVisible()) {
+                platform1.updateTouch(vp)
+            }
+            character.jump(changeInHeight(t / 1000, (t - sleepTime) / 1000))
             t += sleepTime
+            if (character.dead()) {
+                running = false
+                toMain()
+            }
+            if (character.collided(platform1)){
+                t = 0f
+                score += 1
+            }
             Thread.sleep(sleepTime.toLong())
         }
+    }
+
+    private fun changeInHeight(t: Float, lastT: Float): Double {
+        return v0 * t + 0.5 * a * t * t - (v0 * lastT + 0.5 * a * lastT * lastT)
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {
@@ -82,13 +105,6 @@ class GameActivity : AppCompatActivity() {
         finish()
         val intent = Intent(this, MainActivity::class.java).apply {}
         startActivity(intent)
-    }
-
-    private fun reset(){
-        running = false
-        character.reset()
-        platform1.reset()
-
     }
 
 }
