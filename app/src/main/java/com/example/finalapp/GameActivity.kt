@@ -16,9 +16,9 @@ class GameActivity : AppCompatActivity() {
     lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivitySecondBinding
 
-    private val a = -100
+    private val a = -150
     private val vp = 1f
-    private val v0 = 300
+    private val v0 = 400
     private val fps = 50
     private val sleepTime = 1000 / fps
     private var t = 0f
