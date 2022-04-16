@@ -18,6 +18,8 @@ class about : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        //music
+
 
         //back button
         aboutBackButton = findViewById(R.id.aboutBackButton)
