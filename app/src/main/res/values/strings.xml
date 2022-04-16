@@ -2,7 +2,7 @@
     <string name="app_name">FinalApp</string>
     <string name="button">Back</string>
     <string name="Exit">Exit</string>
-    <string name="aboutContentRes"> This application is a mobile game platformer. \n \nIt consists of an android (the player) moving the android around from platform to platform
-    to avoid falling and dying. \n \nThe goal is to get the highest score possible by not dying. \n \nThe android will automatically jump when it comes in contact with a platform, all
+    <string name="aboutContentRes"> This application is a mobile game platformer. \n \nIt consists of an android (the player) moving around from platform to platform
+    to avoid falling and dying. This causes the game to automatically quit. \n \nThe goal is to get the highest score possible by not dying. \n \nThe android will automatically jump when it comes in contact with a platform, all
     the player has to do is line up the android with the platform as if falls down.</string>
 </resources>
