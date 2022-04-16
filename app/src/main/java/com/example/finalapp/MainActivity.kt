@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var startButton: Button
     lateinit var settingsButton: Button
     lateinit var scoresButton: Button
+    lateinit var aboutButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,12 @@ class MainActivity : AppCompatActivity() {
             scores()
         }
 
+        //about button
+        aboutButton = findViewById(R.id.aboutButton)
+        aboutButton.setOnClickListener {
+            about()
+        }
+
 
     }
 
@@ -53,6 +60,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun scores() {
         val intent = Intent( this, ScoresActivity::class.java).apply {}
+        startActivity(intent)
+    }
+
+    private fun about() {
+        val intent = Intent( this, about::class.java).apply {}
         startActivity(intent)
     }
 }

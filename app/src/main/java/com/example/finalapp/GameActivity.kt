@@ -6,7 +6,7 @@ import android.view.MotionEvent
 import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import com.example.finalapp.databinding.ActivitySecondBinding
+import com.example.finalapp.databinding.ActivityGameBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.concurrent.thread
 
@@ -14,7 +14,7 @@ class GameActivity : AppCompatActivity() {
 
 
     lateinit var backButton: FloatingActionButton
-    private lateinit var binding: ActivitySecondBinding
+    private lateinit var binding: ActivityGameBinding
 
     private val a = -150
     private val vp = 1f
@@ -40,8 +40,8 @@ class GameActivity : AppCompatActivity() {
         this.getWindow().setFlags(
             WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
-        setContentView(R.layout.activity_second)
-        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(R.layout.activity_game)
+        binding = ActivityGameBinding.inflate(layoutInflater)
         val view = binding.root
 
         setContentView(view)
