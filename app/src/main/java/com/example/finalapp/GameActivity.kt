@@ -28,7 +28,7 @@ class GameActivity : AppCompatActivity() {
 
 //    private var mVelocityTracker: VelocityTracker? = null
 
-    lateinit var mediaPlayer: MediaPlayer
+    lateinit var gamePlayer: MediaPlayer
     lateinit var character: Player
     lateinit var platform1: Platform
     lateinit var platform2: Platform
@@ -49,10 +49,11 @@ class GameActivity : AppCompatActivity() {
 
         //begin music
         if (MainActivity.Toggle.bool) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.mainloop)
-            mediaPlayer.isLooping = true
-            mediaPlayer.start()
+            gamePlayer = MediaPlayer.create(this, R.raw.mainloop)
+            gamePlayer.isLooping = true
+            gamePlayer.start()
         }
+
         //character
         character = Player(binding.character)
         scoreText = binding.score
@@ -110,11 +111,10 @@ class GameActivity : AppCompatActivity() {
 
 
     private fun toMain() {
-        if (this::mediaPlayer.isInitialized) {
-            mediaPlayer.stop()
+        if (this::gamePlayer.isInitialized) {
+            gamePlayer.stop()
         }
         finish()
-
 
         val intent = Intent(this, MainActivity::class.java).apply {}
         intent.putExtra("score", score.toString())

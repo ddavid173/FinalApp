@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var scoresButton: Button
     lateinit var aboutButton: Button
     private var score: String? = null
-    lateinit var mediaPlayer: MediaPlayer
+    lateinit var menuPlayer: MediaPlayer
 
     object Toggle {
         var bool = true
@@ -37,18 +37,18 @@ class MainActivity : AppCompatActivity() {
 
 
         if (Toggle.bool) {
-            if (!this::mediaPlayer.isInitialized) {
-                mediaPlayer = MediaPlayer.create(this, R.raw.samplemusic)
-                mediaPlayer.start()
+            if (!this::menuPlayer.isInitialized) {
+                menuPlayer = MediaPlayer.create(this, R.raw.samplemusic)
+                menuPlayer.start()
 
             }
-            else if (!mediaPlayer.isPlaying){
-                mediaPlayer.start()
+            else if (!menuPlayer.isPlaying){
+                menuPlayer.start()
             }
         }
         else {
-            if (this::mediaPlayer.isInitialized){
-                mediaPlayer.stop()
+            if (this::menuPlayer.isInitialized){
+                menuPlayer.stop()
             }
         }
 
@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         //start button
         startButton = findViewById(R.id.startButton)
         startButton.setOnClickListener {
-            mediaPlayer.stop()//different song in-game
+            menuPlayer.stop()//different song in-game
             start()
         }
 

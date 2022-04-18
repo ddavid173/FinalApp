@@ -45,23 +45,20 @@ class SettingsActivity : AppCompatActivity() {
         finish()
     }
 
-
     private fun resetScores(){
         // will erase the list of scores saved on app
     }
-
-
 
     private fun musicToggle(){
         //will toggle music on or off TODO:FIX
 
         if (MainActivity.Toggle.bool){
             MainActivity.Toggle.bool = false
-            Toast.makeText(applicationContext, "Music turned off", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Music turned off, start game to apply changes", Toast.LENGTH_SHORT).show()
         }
         else {
             MainActivity.Toggle.bool = true
-            Toast.makeText(applicationContext, "Music turned on", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Music turned on, start game to apply changes", Toast.LENGTH_SHORT).show()
 
         }
 
