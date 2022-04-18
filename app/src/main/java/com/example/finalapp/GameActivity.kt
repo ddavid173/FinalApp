@@ -111,6 +111,7 @@ class GameActivity : AppCompatActivity() {
     private fun toMain() {
         mediaPlayer.stop()
         finish()
+
         val intent = Intent(this, MainActivity::class.java).apply {}
         intent.putExtra("score", score.toString())
         startActivity(intent)

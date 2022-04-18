@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var scoresButton: Button
     lateinit var aboutButton: Button
     private var score: String? = null
+    lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,35 +29,38 @@ class MainActivity : AppCompatActivity() {
 
         score = intent.getStringExtra("score").toString()
 
-        //begin music TODO: FIX
-        var mediaPlayer = MediaPlayer.create( this, R.raw.samplemusic)
-        mediaPlayer.start()
+        //begin music TODO:FIX
+        if (!this::mediaPlayer.isInitialized){
+            mediaPlayer = MediaPlayer.create(this,R.raw.samplemusic)
+            mediaPlayer.start()
+
+        }
+        else if (!mediaPlayer.isPlaying){
+            mediaPlayer.start()
+        }
 
         //start button
         startButton = findViewById(R.id.startButton)
         startButton.setOnClickListener {
-            mediaPlayer.pause()//TODO
+            mediaPlayer.stop()//different song in-game
             start()
         }
 
         //settings button
         settingsButton = findViewById(R.id.settingsbutton)
         settingsButton.setOnClickListener {
-            mediaPlayer.pause()//TODO
             settings()
         }
 
         //scores button
         scoresButton = findViewById(R.id.scoresButton)
         scoresButton.setOnClickListener {
-            mediaPlayer.pause() //TODO
             scores()
         }
 
         //about button
         aboutButton = findViewById(R.id.aboutButton)
         aboutButton.setOnClickListener {
-            mediaPlayer.pause() //TODO
             about()
         }
 

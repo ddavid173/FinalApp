@@ -51,7 +51,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun musicToggle(){
-        //will toggle music on or off
+        //will toggle music on or off TODO:FIX
         if (mediaPlayer.isPlaying){
             mediaPlayer.stop()
             Toast.makeText(applicationContext, "Music turned off", Toast.LENGTH_LONG).show()
