@@ -48,10 +48,11 @@ class GameActivity : AppCompatActivity() {
         setContentView(view)
 
         //begin music
-        mediaPlayer = MediaPlayer.create(this, R.raw.mainloop)
-        mediaPlayer.isLooping = true
-        mediaPlayer.start()
-
+        if (MainActivity.Toggle.bool) {
+            mediaPlayer = MediaPlayer.create(this, R.raw.mainloop)
+            mediaPlayer.isLooping = true
+            mediaPlayer.start()
+        }
         //character
         character = Player(binding.character)
         scoreText = binding.score
@@ -109,8 +110,11 @@ class GameActivity : AppCompatActivity() {
 
 
     private fun toMain() {
-        mediaPlayer.stop()
+        if (this::mediaPlayer.isInitialized) {
+            mediaPlayer.stop()
+        }
         finish()
+
 
         val intent = Intent(this, MainActivity::class.java).apply {}
         intent.putExtra("score", score.toString())

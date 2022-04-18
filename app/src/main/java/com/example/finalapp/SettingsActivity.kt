@@ -14,7 +14,6 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var settingsBackButton: Button
     lateinit var resetScoreButton: Button
     lateinit var musicToggleButton: Button
-    lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,19 +45,23 @@ class SettingsActivity : AppCompatActivity() {
         finish()
     }
 
+
     private fun resetScores(){
         // will erase the list of scores saved on app
     }
 
+
+
     private fun musicToggle(){
         //will toggle music on or off TODO:FIX
-        if (mediaPlayer.isPlaying){
-            mediaPlayer.stop()
-            Toast.makeText(applicationContext, "Music turned off", Toast.LENGTH_LONG).show()
+
+        if (MainActivity.Toggle.bool){
+            MainActivity.Toggle.bool = false
+            Toast.makeText(applicationContext, "Music turned off", Toast.LENGTH_SHORT).show()
         }
         else {
-            mediaPlayer.start()
-            Toast.makeText(applicationContext, "Music turned on", Toast.LENGTH_LONG).show()
+            MainActivity.Toggle.bool = true
+            Toast.makeText(applicationContext, "Music turned on", Toast.LENGTH_SHORT).show()
 
         }
 

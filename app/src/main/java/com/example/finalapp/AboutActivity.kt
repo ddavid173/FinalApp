@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.example.finalapp.databinding.ActivityAboutBinding
 
-class about : AppCompatActivity() {
+class AboutActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityAboutBinding
     lateinit var aboutBackButton: Button

@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
     private var score: String? = null
     lateinit var mediaPlayer: MediaPlayer
 
+    object Toggle {
+        var bool = true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -30,14 +34,24 @@ class MainActivity : AppCompatActivity() {
         score = intent.getStringExtra("score").toString()
 
         //begin music TODO:FIX
-        if (!this::mediaPlayer.isInitialized){
-            mediaPlayer = MediaPlayer.create(this,R.raw.samplemusic)
-            mediaPlayer.start()
 
+
+        if (Toggle.bool) {
+            if (!this::mediaPlayer.isInitialized) {
+                mediaPlayer = MediaPlayer.create(this, R.raw.samplemusic)
+                mediaPlayer.start()
+
+            }
+            else if (!mediaPlayer.isPlaying){
+                mediaPlayer.start()
+            }
         }
-        else if (!mediaPlayer.isPlaying){
-            mediaPlayer.start()
+        else {
+            if (this::mediaPlayer.isInitialized){
+                mediaPlayer.stop()
+            }
         }
+
 
         //start button
         startButton = findViewById(R.id.startButton)
@@ -84,7 +98,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun about() {
-        val intent = Intent( this, about::class.java).apply {}
+        val intent = Intent( this, AboutActivity::class.java).apply {}
         startActivity(intent)
     }
 }
