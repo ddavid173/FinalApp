@@ -1,10 +1,14 @@
 package com.example.finalapp
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.finalapp.databinding.ActivityMainBinding
+
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +16,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var startButton: Button
     lateinit var settingsButton: Button
     lateinit var scoresButton: Button
+    lateinit var aboutButton: Button
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,22 +26,36 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        //begin music TODO: FIX
+        var mediaPlayer = MediaPlayer.create( this, R.raw.samplemusic)
+        mediaPlayer.start()
+
         //start button
         startButton = findViewById(R.id.startButton)
         startButton.setOnClickListener {
+            mediaPlayer.pause()//TODO
             start()
         }
 
         //settings button
         settingsButton = findViewById(R.id.settingsbutton)
         settingsButton.setOnClickListener {
+            mediaPlayer.pause()//TODO
             settings()
         }
 
         //scores button
         scoresButton = findViewById(R.id.scoresButton)
         scoresButton.setOnClickListener {
+            mediaPlayer.pause() //TODO
             scores()
+        }
+
+        //about button
+        aboutButton = findViewById(R.id.aboutButton)
+        aboutButton.setOnClickListener {
+            mediaPlayer.pause() //TODO
+            about()
         }
 
 
@@ -53,6 +73,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun scores() {
         val intent = Intent( this, ScoresActivity::class.java).apply {}
+        startActivity(intent)
+    }
+
+    private fun about() {
+        val intent = Intent( this, about::class.java).apply {}
         startActivity(intent)
     }
 }
