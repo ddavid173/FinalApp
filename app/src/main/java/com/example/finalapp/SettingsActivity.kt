@@ -1,9 +1,11 @@
 package com.example.finalapp
 
 import android.content.Intent
+import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import com.example.finalapp.databinding.ActivitySettingsBinding
 
 class SettingsActivity : AppCompatActivity() {
@@ -12,6 +14,7 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var settingsBackButton: Button
     lateinit var resetScoreButton: Button
     lateinit var musicToggleButton: Button
+    lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +43,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun toMain() {
-        val intent = Intent(this, MainActivity::class.java).apply {}
-        startActivity(intent)
+        finish()
     }
 
     private fun resetScores(){
@@ -50,6 +52,16 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun musicToggle(){
         //will toggle music on or off
+        if (mediaPlayer.isPlaying){
+            mediaPlayer.stop()
+            Toast.makeText(applicationContext, "Music turned off", Toast.LENGTH_LONG).show()
+        }
+        else {
+            mediaPlayer.start()
+            Toast.makeText(applicationContext, "Music turned on", Toast.LENGTH_LONG).show()
+
+        }
+
     }
 
 

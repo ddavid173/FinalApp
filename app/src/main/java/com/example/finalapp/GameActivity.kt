@@ -1,6 +1,7 @@
 package com.example.finalapp
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.WindowManager
@@ -27,12 +28,12 @@ class GameActivity : AppCompatActivity() {
 
 //    private var mVelocityTracker: VelocityTracker? = null
 
+    lateinit var mediaPlayer: MediaPlayer
     lateinit var character: Player
     lateinit var platform1: Platform
     lateinit var platform2: Platform
     lateinit var platform3: Platform
     lateinit var scoreText: TextView
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,11 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
 
         setContentView(view)
+
+        //begin music
+        mediaPlayer = MediaPlayer.create(this, R.raw.mainloop)
+        mediaPlayer.isLooping = true
+        mediaPlayer.start()
 
         //character
         character = Player(binding.character)
@@ -102,9 +108,11 @@ class GameActivity : AppCompatActivity() {
 
 
     private fun toMain() {
+        mediaPlayer.stop()
         finish()
         val intent = Intent(this, MainActivity::class.java).apply {}
         startActivity(intent)
+
     }
 
 }

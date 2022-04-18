@@ -4,6 +4,7 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.widget.Button
 import com.example.finalapp.databinding.ActivityMainBinding
 
@@ -12,12 +13,13 @@ import com.example.finalapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+
     private lateinit var binding: ActivityMainBinding
     lateinit var startButton: Button
     lateinit var settingsButton: Button
     lateinit var scoresButton: Button
     lateinit var aboutButton: Button
-
+    lateinit var mediaPlayer: MediaPlayer
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,34 +29,37 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         //begin music TODO: FIX
-        var mediaPlayer = MediaPlayer.create( this, R.raw.samplemusic)
-        mediaPlayer.start()
+        if (!this::mediaPlayer.isInitialized){
+            mediaPlayer = MediaPlayer.create(this, R.raw.samplemusic)
+            if (!mediaPlayer.isPlaying){
+                mediaPlayer.isLooping = true
+                mediaPlayer.start()
+            }
+        }
+
 
         //start button
         startButton = findViewById(R.id.startButton)
         startButton.setOnClickListener {
-            mediaPlayer.pause()//TODO
+            mediaPlayer.stop() //another song will play when playing game
             start()
         }
 
         //settings button
         settingsButton = findViewById(R.id.settingsbutton)
         settingsButton.setOnClickListener {
-            mediaPlayer.pause()//TODO
             settings()
         }
 
         //scores button
         scoresButton = findViewById(R.id.scoresButton)
         scoresButton.setOnClickListener {
-            mediaPlayer.pause() //TODO
             scores()
         }
 
         //about button
         aboutButton = findViewById(R.id.aboutButton)
         aboutButton.setOnClickListener {
-            mediaPlayer.pause() //TODO
             about()
         }
 

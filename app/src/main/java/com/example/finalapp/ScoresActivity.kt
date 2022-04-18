@@ -28,7 +28,6 @@ class ScoresActivity : AppCompatActivity() {
     }
 
     private fun toMain() {
-        val intent = Intent(this, MainActivity::class.java).apply {}
-        startActivity(intent)
+        finish()
     }
 }
