@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     private var score: String? = null
     lateinit var menuPlayer: MediaPlayer
 
-    object Toggle {
+    object Toggle {  //flag for music toggle
         var bool = true
     }
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
         score = intent.getStringExtra("score").toString()
 
-        //begin music TODO:FIX
+        //begin music
         if (Toggle.bool) {
             if (!this::menuPlayer.isInitialized) {
                 menuPlayer = MediaPlayer.create(this, R.raw.samplemusic)

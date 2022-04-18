@@ -50,7 +50,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun musicToggle(){
-        //will toggle music on or off TODO:FIX
+        //will toggle music on or off
 
         if (MainActivity.Toggle.bool){
             MainActivity.Toggle.bool = false
