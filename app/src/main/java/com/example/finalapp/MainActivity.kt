@@ -4,7 +4,6 @@ import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.widget.Button
 import com.example.finalapp.databinding.ActivityMainBinding
 
@@ -13,13 +12,12 @@ import com.example.finalapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-
     private lateinit var binding: ActivityMainBinding
     lateinit var startButton: Button
     lateinit var settingsButton: Button
     lateinit var scoresButton: Button
     lateinit var aboutButton: Button
-    lateinit var mediaPlayer: MediaPlayer
+    private var score: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,38 +26,37 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        //begin music TODO: FIX
-        if (!this::mediaPlayer.isInitialized){
-            mediaPlayer = MediaPlayer.create(this, R.raw.samplemusic)
-            if (!mediaPlayer.isPlaying){
-                mediaPlayer.isLooping = true
-                mediaPlayer.start()
-            }
-        }
+        score = intent.getStringExtra("score").toString()
 
+        //begin music TODO: FIX
+        var mediaPlayer = MediaPlayer.create( this, R.raw.samplemusic)
+        mediaPlayer.start()
 
         //start button
         startButton = findViewById(R.id.startButton)
         startButton.setOnClickListener {
-            mediaPlayer.stop() //another song will play when playing game
+            mediaPlayer.pause()//TODO
             start()
         }
 
         //settings button
         settingsButton = findViewById(R.id.settingsbutton)
         settingsButton.setOnClickListener {
+            mediaPlayer.pause()//TODO
             settings()
         }
 
         //scores button
         scoresButton = findViewById(R.id.scoresButton)
         scoresButton.setOnClickListener {
+            mediaPlayer.pause() //TODO
             scores()
         }
 
         //about button
         aboutButton = findViewById(R.id.aboutButton)
         aboutButton.setOnClickListener {
+            mediaPlayer.pause() //TODO
             about()
         }
 
@@ -78,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun scores() {
         val intent = Intent( this, ScoresActivity::class.java).apply {}
+        intent.putExtra("score", score.toString())
         startActivity(intent)
     }
 

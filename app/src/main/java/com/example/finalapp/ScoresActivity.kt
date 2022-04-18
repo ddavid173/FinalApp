@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
 import com.example.finalapp.databinding.ActivityScoresBinding
 import com.example.finalapp.databinding.ActivitySettingsBinding
 
@@ -11,6 +12,8 @@ class ScoresActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityScoresBinding
     lateinit var scoresBackButtton: Button
+    lateinit var scoresList: RecyclerView
+    private var lastScore: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +23,12 @@ class ScoresActivity : AppCompatActivity() {
         setContentView(view)
 
         //back button
-        scoresBackButtton = findViewById(R.id.scoresBackButton)
+        scoresBackButtton = binding.scoresBackButton
+        scoresList = binding.scoresView
+        lastScore = intent.getStringExtra("score").toString()
+
+        //TODO: add the latest score to the RecyclerView
+
         scoresBackButtton.setOnClickListener {
             toMain()
         }
