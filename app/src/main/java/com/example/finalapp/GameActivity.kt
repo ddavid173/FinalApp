@@ -77,6 +77,7 @@ class GameActivity : AppCompatActivity() {
             if (character.collided(platform1)){
                 t = 0f
                 score += 1
+//                scoreText.text = score.toString()
             }
             Thread.sleep(sleepTime.toLong())
         }
@@ -104,6 +105,7 @@ class GameActivity : AppCompatActivity() {
     private fun toMain() {
         finish()
         val intent = Intent(this, MainActivity::class.java).apply {}
+        intent.putExtra("score", score.toString())
         startActivity(intent)
     }
 

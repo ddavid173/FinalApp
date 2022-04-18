@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var settingsButton: Button
     lateinit var scoresButton: Button
     lateinit var aboutButton: Button
-
+    private var score: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        score = intent.getStringExtra("score").toString()
 
         //begin music TODO: FIX
         var mediaPlayer = MediaPlayer.create( this, R.raw.samplemusic)
@@ -73,6 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun scores() {
         val intent = Intent( this, ScoresActivity::class.java).apply {}
+        intent.putExtra("score", score.toString())
         startActivity(intent)
     }
 
