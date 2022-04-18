@@ -34,8 +34,6 @@ class MainActivity : AppCompatActivity() {
         score = intent.getStringExtra("score").toString()
 
         //begin music TODO:FIX
-
-
         if (Toggle.bool) {
             if (!this::menuPlayer.isInitialized) {
                 menuPlayer = MediaPlayer.create(this, R.raw.samplemusic)
@@ -56,7 +54,9 @@ class MainActivity : AppCompatActivity() {
         //start button
         startButton = findViewById(R.id.startButton)
         startButton.setOnClickListener {
-            menuPlayer.stop()//different song in-game
+            if (this::menuPlayer.isInitialized) {
+                menuPlayer.stop()//different song in-game
+            }
             start()
         }
 
