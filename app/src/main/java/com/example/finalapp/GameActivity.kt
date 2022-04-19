@@ -1,6 +1,7 @@
 package com.example.finalapp
 
 import android.content.Intent
+import android.content.res.Resources
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.MotionEvent
@@ -17,9 +18,11 @@ class GameActivity : AppCompatActivity() {
     lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivityGameBinding
 
-    private val a = -150
-    private val vp = 1f
-    private val v0 = 400
+    private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
+    private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
+    private val a = screenHeight / 5.5 * -1
+    private val vp = screenHeight / 700
+    private val v0 = screenHeight / 3
     private val fps = 50
     private val sleepTime = 1000 / fps
     private var t = 0f
@@ -33,7 +36,9 @@ class GameActivity : AppCompatActivity() {
     lateinit var platform1: Platform
     lateinit var platform2: Platform
     lateinit var platform3: Platform
+    lateinit var platform4: Platform
     lateinit var scoreText: TextView
+    private var platforms = listOf<Platform>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +65,14 @@ class GameActivity : AppCompatActivity() {
 
         //Platforms
         platform1 = Platform(binding.platform1)
+        platform2 = Platform(binding.platform2)
+        platform3 = Platform(binding.platform3)
+        platform4 = Platform(binding.platform4)
+        platform1.setUp(platform4, true)
+        platform2.setUp(platform1, false)
+        platform3.setUp(platform2, false)
+        platform4.setUp(platform3, false)
+        platforms = listOf<Platform>(platform1, platform2, platform3, platform4)
 
         // back button
         backButton = findViewById(R.id.fab)
@@ -73,21 +86,23 @@ class GameActivity : AppCompatActivity() {
 
     private fun game() {
         while (running) {
-            if (platform1.inVisible()) {
-                platform1.updateTouch(vp)
-            }
             character.jump(changeInHeight(t / 1000, (t - sleepTime) / 1000))
-            t += sleepTime
+            for (plat in platforms) {
+                plat.updateTouch(vp)
+                if (character.collided(plat)) {
+                    t = 0f
+                    score += 1
+                }
+                if (plat.onBotton()){ plat.reset() }
+            }
             if (character.dead()) {
                 running = false
                 toMain()
             }
-            if (character.collided(platform1)){
-                t = 0f
-                score += 1
-//                scoreText.text = score.toString()
-            }
+            t += sleepTime
+            println("score $score")
             Thread.sleep(sleepTime.toLong())
+            //Thread.sleep(200)
         }
     }
 

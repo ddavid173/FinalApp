@@ -56,10 +56,10 @@ class Player(private val image: ImageView) {
     }
 
     fun collided(plat: Platform): Boolean {
-        val diff = abs(((image.translationY) + screenHeight) - plat.y - image.height - 50)
+        val diff = image.translationY - plat.y
         println(diff)
         return if (goDown) {
-            diff < 5
+            (diff < 15) && (diff > -15)
         } else {
             false
         }

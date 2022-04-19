@@ -12,36 +12,36 @@ import kotlin.random.Random
 
 class Platform(private val image: ImageView) {
     var y = 0f
+    lateinit var below: Platform
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
-    init {
-        spawn()
+    fun setUp (belowPlat: Platform, first: Boolean){
+        below = belowPlat
+        image.translationX = Random.nextInt(30, screenWidth - image.width - 30).toFloat()
+        if (first) {
+            image.translationY = ((screenHeight / 4) * -1).toFloat()
+        } else {
+            image.translationY = below.y - screenHeight / 4
+        }
+        y = image.translationY
+        image.visibility = View.VISIBLE
     }
 
-    /**
-     * update properties for the game object
-     * when the player touches the screen, position the player bitmap there
-     */
-    fun updateTouch(y_move: Float) {
-        image.translationY += (y_move)
-        y = image.translationY + image.height
+    fun updateTouch(y_move: Int) {
+        image.translationY += y_move
+        y = image.translationY
 
-    }
-
-    fun spawn(){
-        image.translationX = Random.nextInt(30, screenWidth - image.width).toFloat()
-        image.translationY = 750f
-    }
-
-    fun inVisible(): Boolean {
-        return image.visibility == View.VISIBLE
     }
 
     fun reset(){
-        image.translationX = 0f
-        image.translationY= 0f
-        image.visibility = View.GONE
+        image.translationX = Random.nextInt(30, screenWidth - image.width - 30).toFloat()
+        image.translationY = below.y - screenHeight / 4
     }
+
+    fun onBotton(): Boolean {
+        return (image.translationY > 0)
+    }
+
 
 }

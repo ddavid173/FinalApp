@@ -23,7 +23,6 @@
         android:id="@+id/character"
         android:layout_width="75dp"
         android:layout_height="75dp"
-        android:layout_marginBottom="100dp"
         android:contentDescription="character"
         android:translationX="0dp"
         android:translationY="0dp"
@@ -36,11 +35,45 @@
         android:id="@+id/platform1"
         android:layout_width="100dp"
         android:layout_height="75dp"
+        android:src="@drawable/ic_baseline_minimize_24"
         android:translationX="0dp"
         android:translationY="0dp"
-        android:src="@drawable/ic_baseline_minimize_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/platform2"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:src="@drawable/ic_baseline_minimize_24"
+        android:translationX="0dp"
+        android:translationY="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/platform3"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:src="@drawable/ic_baseline_minimize_24"
+        android:translationX="0dp"
+        android:translationY="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/platform4"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
+        android:src="@drawable/ic_baseline_minimize_24"
+        android:translationX="0dp"
+        android:translationY="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/score"
