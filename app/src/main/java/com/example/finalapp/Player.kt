@@ -2,7 +2,6 @@ package com.example.finalapp
 
 import android.content.res.Resources
 import android.widget.ImageView
-import java.lang.Math.abs
 
 
 /**
@@ -11,9 +10,8 @@ import java.lang.Math.abs
 
 class Player(private val image: ImageView) {
     var lastx = 0.0f
-    var goDown = false
+    private var goDown = false
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
-    private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 
     init {
         image.translationX = 0f//(screenWidth/20).toFloat()
@@ -25,16 +23,16 @@ class Player(private val image: ImageView) {
      * when the player touches the screen, position the player bitmap there
      */
     fun updateTouch(start: Float, end: Float) {
-        if (image.translationX + (end - start).toFloat() < 0){
+        if (image.translationX + (end - start) < 0){
                 if ((end - start) > 0){
-                    image.translationX += (end - start).toFloat()
+                    image.translationX += (end - start)
                 }
-        } else if (image.translationX + (end - start).toFloat() > (screenWidth - image.width)) {
+        } else if (image.translationX + (end - start) > (screenWidth - image.width)) {
                 if ((end - start) < 0) {
-                    image.translationX += (end - start).toFloat()
+                    image.translationX += (end - start)
                 }
         } else {
-            image.translationX += (end - start).toFloat()
+            image.translationX += (end - start)
         }
     }
     
@@ -51,18 +49,11 @@ class Player(private val image: ImageView) {
         return image.translationY > 300
     }
 
-    fun reset(){
-        image.translationX = 0f
-    }
-
     fun collided(plat: Platform): Boolean {
         val diffY = image.translationY - plat.y
         val diffX = image.translationX - plat.x
-        print(diffX)
-        print(" ")
-        println(diffY)
         return if (goDown) {
-            (diffY < 15) && (diffY > -15) && (diffX < image.width) && (diffX > -1 * image.width)
+            (diffY < 15) && (diffY > -15) && (diffX < image.width / 2) && (diffX > -1 * image.width / 2)
         } else {
             false
         }

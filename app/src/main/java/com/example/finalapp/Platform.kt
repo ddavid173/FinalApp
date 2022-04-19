@@ -13,7 +13,7 @@ import kotlin.random.Random
 class Platform(private val image: ImageView) {
     var y = 0f
     var x = 0f
-    lateinit var below: Platform
+    private lateinit var below: Platform
     private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
 

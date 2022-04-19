@@ -5,22 +5,20 @@ import android.content.Intent
 import android.content.res.Resources
 import android.media.MediaPlayer
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.MotionEvent
-import android.view.WindowManager
-import android.widget.TextView
+import android.view.WindowManager.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalapp.databinding.ActivityGameBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlin.concurrent.thread
 
+@Suppress("DEPRECATION")
 class GameActivity : AppCompatActivity() {
 
 
-    lateinit var backButton: FloatingActionButton
+    private lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivityGameBinding
 
-    private val screenWidth = Resources.getSystem().displayMetrics.widthPixels
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
     private val a = screenHeight / 5.5 * -1
     private val vp = screenHeight / 700
@@ -28,25 +26,24 @@ class GameActivity : AppCompatActivity() {
     private val fps = 50
     private val sleepTime = 1000 / fps
     private var t = 0f
-    var running = true
+    private var running = true
     var score = 0
 
 //    private var mVelocityTracker: VelocityTracker? = null
 
-    lateinit var gamePlayer: MediaPlayer
-    lateinit var character: Player
-    lateinit var platform1: Platform
-    lateinit var platform2: Platform
-    lateinit var platform3: Platform
-    lateinit var platform4: Platform
-    lateinit var scoreText: TextView
+    private lateinit var gamePlayer: MediaPlayer
+    private lateinit var character: Player
+    private lateinit var platform1: Platform
+    private lateinit var platform2: Platform
+    private lateinit var platform3: Platform
+    private lateinit var platform4: Platform
     private var platforms = listOf<Platform>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        this.getWindow().setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN
+        this.window.setFlags(
+            LayoutParams.FLAG_FULLSCREEN, LayoutParams.FLAG_FULLSCREEN
         )
         setContentView(R.layout.activity_game)
         binding = ActivityGameBinding.inflate(layoutInflater)
@@ -63,7 +60,6 @@ class GameActivity : AppCompatActivity() {
 
         //character
         character = Player(binding.character)
-        scoreText = binding.score
 
         //Platforms
         platform1 = Platform(binding.platform1)
@@ -74,7 +70,7 @@ class GameActivity : AppCompatActivity() {
         platform2.setUp(platform1, false)
         platform3.setUp(platform2, false)
         platform4.setUp(platform3, false)
-        platforms = listOf<Platform>(platform1, platform2, platform3, platform4)
+        platforms = listOf(platform1, platform2, platform3, platform4)
 
         // back button
         backButton = findViewById(R.id.fab)
@@ -87,6 +83,7 @@ class GameActivity : AppCompatActivity() {
     }
 
     private fun game() {
+        val speed = sleepTime
         while (running) {
             character.jump(changeInHeight(t / 1000, (t - sleepTime) / 1000))
             for (plat in platforms) {
@@ -101,10 +98,8 @@ class GameActivity : AppCompatActivity() {
                 running = false
                 toMain()
             }
-            t += sleepTime
-            println("score $score")
+            t += speed
             Thread.sleep(sleepTime.toLong())
-            //Thread.sleep(200)
         }
     }
 
