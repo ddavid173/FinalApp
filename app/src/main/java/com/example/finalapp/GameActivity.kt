@@ -1,9 +1,11 @@
 package com.example.finalapp
 
+import android.app.Activity
 import android.content.Intent
 import android.content.res.Resources
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.MotionEvent
 import android.view.WindowManager
 import android.widget.TextView
@@ -132,9 +134,14 @@ class GameActivity : AppCompatActivity() {
         finish()
 
         val intent = Intent(this, MainActivity::class.java).apply {}
-        intent.putExtra("score", score.toString())
+        intent.putExtra(EXTRA_REPLY, score)
+        setResult(Activity.RESULT_OK, intent)
         startActivity(intent)
 
+    }
+
+    companion object{
+        const val EXTRA_REPLY = "com.example.android.scorelistsql.REPLY"
     }
 
 }

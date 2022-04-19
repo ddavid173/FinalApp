@@ -1,5 +1,6 @@
 package com.example.finalapp
 
+import android.app.Activity
 import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
@@ -94,6 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun scores() {
         val intent = Intent( this, ScoresActivity::class.java).apply {}
         intent.putExtra("score", score.toString())
+        setResult(Activity.RESULT_OK, intent)
         startActivity(intent)
     }
 
@@ -101,4 +103,8 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent( this, AboutActivity::class.java).apply {}
         startActivity(intent)
     }
+
+//    companion object{
+//        const val EXTRA_REPLY = "com.example.android.scorelistsql.REPLY"
+//    }
 }
