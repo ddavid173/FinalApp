@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FinalApp</string>
+    <string name="app_name">Jumper</string>
     <string name="button">Back</string>
     <string name="Exit">Exit</string>
     <string name="aboutContentRes"> This application is a mobile game platformer. \n \nIt consists of an android (the player) moving around from platform to platform
