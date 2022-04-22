@@ -91,6 +91,7 @@ class GameActivity : AppCompatActivity() {
                 if (character.collided(plat)) {
                     t = 0f
                     score += 1
+                    println("score $score")
                 }
                 if (plat.onBotton()){ plat.reset() }
             }
