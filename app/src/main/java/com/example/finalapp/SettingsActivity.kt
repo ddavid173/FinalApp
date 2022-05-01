@@ -14,6 +14,7 @@ class SettingsActivity : AppCompatActivity() {
     lateinit var settingsBackButton: Button
     lateinit var resetScoreButton: Button
     lateinit var musicToggleButton: Button
+    lateinit var hardModeButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +40,12 @@ class SettingsActivity : AppCompatActivity() {
         musicToggleButton.setOnClickListener {
             musicToggle()
         }
+        // Hard Mode
+        hardModeButton = findViewById(R.id.hardMode)
+        hardModeButton.setOnClickListener {
+            hardToggle()
+        }
+
     }
 
     private fun toMain() {
@@ -47,6 +54,19 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun resetScores(){
         // will erase the list of scores saved on app
+    }
+
+    private fun hardToggle(){
+
+        if (GameActivity.Toggle.bool){
+            GameActivity.Toggle.bool = false
+            Toast.makeText(applicationContext, "Hard Mode turned off, start game to apply changes", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            GameActivity.Toggle.bool = true
+            Toast.makeText(applicationContext, "Hard Mode turned on, start game to apply changes", Toast.LENGTH_SHORT).show()
+
+        }
     }
 
     private fun musicToggle(){

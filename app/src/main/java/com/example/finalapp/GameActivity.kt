@@ -15,14 +15,17 @@ import kotlin.concurrent.thread
 @Suppress("DEPRECATION")
 class GameActivity : AppCompatActivity() {
 
+    object Toggle {  //flag for music toggle
+        var bool = true
+    }
 
     private lateinit var backButton: FloatingActionButton
     private lateinit var binding: ActivityGameBinding
 
     private val screenHeight = Resources.getSystem().displayMetrics.heightPixels
-    private val a = screenHeight / 5.5 * -1
-    private val vp = screenHeight / 700
-    private val v0 = screenHeight / 3
+    private var a = screenHeight / 5.5 * -1
+    private var vp = screenHeight / 700
+    private var v0 = screenHeight / 3
     private val fps = 50
     private val sleepTime = 1000 / fps
     private var t = 0f
@@ -30,7 +33,7 @@ class GameActivity : AppCompatActivity() {
     var score = 0
 
 //    private var mVelocityTracker: VelocityTracker? = null
-
+    private lateinit var scoreBoard: ScoreBoard
     private lateinit var gamePlayer: MediaPlayer
     private lateinit var character: Player
     private lateinit var platform1: Platform
@@ -50,6 +53,11 @@ class GameActivity : AppCompatActivity() {
         val view = binding.root
 
         setContentView(view)
+        if (Toggle.bool){
+            a = screenHeight / 5.5 * -1
+            vp = (screenHeight / 400).toInt()
+            v0 = (screenHeight / 3).toInt()
+        }
 
         //begin music
         if (MainActivity.Toggle.bool) {
@@ -72,6 +80,9 @@ class GameActivity : AppCompatActivity() {
         platform4.setUp(platform3, false)
         platforms = listOf(platform1, platform2, platform3, platform4)
 
+        //ScoreBoard
+        scoreBoard = ScoreBoard(binding.score)
+
         // back button
         backButton = findViewById(R.id.fab)
         thread { // launch a new coroutine and continue
@@ -91,7 +102,7 @@ class GameActivity : AppCompatActivity() {
                 if (character.collided(plat)) {
                     t = 0f
                     score += 1
-                    println("score $score")
+                    runOnUiThread { scoreBoard.update() }
                 }
                 if (plat.onBotton()){ plat.reset() }
             }
@@ -128,7 +139,6 @@ class GameActivity : AppCompatActivity() {
             gamePlayer.stop()
         }
         finish()
-
         val intent = Intent(this, MainActivity::class.java).apply {}
         intent.putExtra(EXTRA_REPLY, score)
         setResult(Activity.RESULT_OK, intent)

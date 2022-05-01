@@ -29,8 +29,6 @@ public abstract class ScoreRoomDatabase : RoomDatabase(){
             scoreDao.deleteAll()
             var score = Score("0")
             scoreDao.insert(score)
-            score = Score("3")
-            scoreDao.insert(score)
         }
     }
 
