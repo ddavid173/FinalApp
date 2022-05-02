@@ -10,4 +10,9 @@ class ScoreRepository(private val scoreDao: ScoreDao) {
     suspend fun insert(score: Score){
         scoreDao.insert(score)
     }
+
+    @WorkerThread
+    suspend fun delete(){
+        scoreDao.deleteAll()
+    }
 }

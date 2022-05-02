@@ -1,10 +1,13 @@
 package com.example.finalapp
 
+import android.animation.ObjectAnimator
+import android.animation.PropertyValuesHolder
 import android.app.Activity
 import android.content.Intent
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import com.example.finalapp.databinding.ActivityMainBinding
 
@@ -95,7 +98,7 @@ class MainActivity : AppCompatActivity() {
     private fun scores() {
         val intent = Intent( this, ScoresActivity::class.java).apply {}
         intent.putExtra("score", score.toString())
-        setResult(Activity.RESULT_OK, intent)
+//        setResult(Activity.RESULT_OK, intent)
         startActivity(intent)
     }
 

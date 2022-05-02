@@ -34,8 +34,9 @@ class ScoresActivity : AppCompatActivity() {
         scoresList = binding.scoresView
         lastScore = intent.getStringExtra("score").toString()
         val score = Score(lastScore!!)
-        scoreViewModel.insert(score)
-
+        if (lastScore != "null") {
+            scoreViewModel.insert(score)
+        }
         val recyclerView = findViewById<RecyclerView>(R.id.scoresView)
         val adapter = ScoreListAdapter()
         recyclerView.adapter = adapter

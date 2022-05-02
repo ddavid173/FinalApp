@@ -10,6 +10,10 @@ class ScoreViewModel(private val repository: ScoreRepository) : ViewModel() {
     fun insert(score: Score) = viewModelScope.launch {
         repository.insert(score)
     }
+
+    fun delete() = viewModelScope.launch{
+        repository.delete()
+    }
 }
 
 class ScoreViewModelFactory(private val repository: ScoreRepository) : ViewModelProvider.Factory {

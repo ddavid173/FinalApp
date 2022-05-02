@@ -55,7 +55,7 @@ class GameActivity : AppCompatActivity() {
         setContentView(view)
         if (Toggle.bool){
             a = screenHeight / 5.5 * -1
-            vp = (screenHeight / 400).toInt()
+            vp = (screenHeight / 500).toInt()
             v0 = (screenHeight / 3).toInt()
         }
 
@@ -140,14 +140,14 @@ class GameActivity : AppCompatActivity() {
         }
         finish()
         val intent = Intent(this, MainActivity::class.java).apply {}
-        intent.putExtra(EXTRA_REPLY, score)
-        setResult(Activity.RESULT_OK, intent)
+        intent.putExtra("score", score.toString())
+//        setResult(Activity.RESULT_OK, intent)
         startActivity(intent)
 
     }
 
-    companion object{
-        const val EXTRA_REPLY = "com.example.android.scorelistsql.REPLY"
-    }
+//    companion object{
+//        const val EXTRA_REPLY = "com.example.android.scorelistsql.REPLY"
+//    }
 
 }
