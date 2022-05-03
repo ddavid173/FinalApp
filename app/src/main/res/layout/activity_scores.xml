@@ -23,8 +23,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scoresView"
-        android:layout_width="301dp"
-        android:layout_height="507dp"
+        android:layout_width="269dp"
+        android:layout_height="467dp"
         app:layout_constraintBottom_toTopOf="@+id/scoresBackButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
