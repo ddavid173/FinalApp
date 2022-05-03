@@ -35,6 +35,9 @@ class Platform(private val image: ImageView) {
     }
 
     fun updateTouch(y_move: Int) {
+        if (GameActivity.Toggle.bool){ // makes it go faster when hardmode is on?
+            image.translationY += y_move * 3
+        }
         image.translationY += y_move
         y = image.translationY
     }

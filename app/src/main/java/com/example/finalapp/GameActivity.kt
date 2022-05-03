@@ -95,6 +95,7 @@ class GameActivity : AppCompatActivity() {
 
     private fun game() {
         val speed = sleepTime
+
         while (running) {
             character.jump(changeInHeight(t / 1000, (t - sleepTime) / 1000))
             for (plat in platforms) {
@@ -110,7 +111,12 @@ class GameActivity : AppCompatActivity() {
                 running = false
                 toMain()
             }
-            t += speed
+            if (Toggle.bool) { // if I got this correctly it makes the jumptime shorter
+                t += speed - (speed/6)
+            }
+            else {
+                t += speed
+            }
             Thread.sleep(sleepTime.toLong())
         }
     }
